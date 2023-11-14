@@ -11,7 +11,7 @@ module.exports = {
     try {
       const page = Number(req.query.page || 1);
       const perPage = Number(req.query.perPage || 10);
-      const status = Number(req.query.status || 2);
+      const status = req.query.status || null;
       const skip = (page - 1) * perPage;
       const keyword = req.query.keyword || "";
       const category = req.query.category || "";
@@ -19,7 +19,6 @@ module.exports = {
       const sortType = req.query.order || "asc";
 
       const params = {
-        program_status: status,
         program_title: {
           contains: keyword,
         },
